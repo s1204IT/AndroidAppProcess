@@ -9,7 +9,7 @@ import android.os.ServiceManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rosan.app_process.AppProcess;
+//import com.rosan.app_process.AppProcess;
 
 import java.util.Arrays;
 
@@ -24,10 +24,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppProcess process = new AppProcess.Default();
-        process.init(this);
+        //AppProcess process = new AppProcess.Default();
+        //process.init(this);
 
         IBinder manager = ServiceManager.getService("package");
+        /*
         IBinder binderWrapper;
         try {
             binderWrapper = process.binderWrapper(manager);
@@ -36,7 +37,8 @@ public class MainActivity extends Activity {
             finishAndRemoveTask();
             return;
         }
-        IPackageManager managerWrapper = IPackageManager.Stub.asInterface(binderWrapper);
+        */
+        IPackageManager managerWrapper = IPackageManager.Stub.asInterface(manager);
 
         String[] libraries = new String[]{"NULL"};
         try {
@@ -50,6 +52,6 @@ public class MainActivity extends Activity {
         TextView text = findViewById(R.id.text);
         text.setText(Arrays.toString(libraries));
 
-        process.close();
+        //process.close();
     }
 }
